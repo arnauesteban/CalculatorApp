@@ -38,7 +38,7 @@
             android:text="DEG"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:onClick="angleOnClick"
+            android:onClick="angleOnClick"/>
 
         <LinearLayout
             android:id="@+id/linearLayout"
