@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private void clearCalculation()
     {
         calculation = "";
-        calcTextView.setText(calculation);
+        calcTextView.setText("");
 
         clearFlags();
         num1 = 0;
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void oneOnClick(View w)
     {
+        calcTextView.setText("HOLAAA LOCOO");
         setCalculation("1");
         numberInput(1);
     }
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
     public void clearOnClick(View w)
     {
         clearCalculation();
-        setResult(0);
+        setResult(0.0f);
     }
 
 
@@ -190,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 divisionFlag = false;
             }
 
+
             if(op == "=")
             {
                 double radians;
@@ -199,7 +201,8 @@ public class MainActivity extends AppCompatActivity {
                     radians = num2;
 
                 if(cosinusFlag) {
-                    setResult((float) Math.cos(radians));
+                    result = (float) Math.cos(radians);
+                    setResult(result);
                     cosinusFlag = false;
                 }
                 else if(sinusFlag) {
@@ -212,6 +215,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                     setResult(num1);
+
+                num2 = 0;
             }
         }
 
@@ -232,15 +237,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void numberInput(float num)
+    private void numberInput(int num)
     {
+        String num1String, num2String, numString;
+        num1String = Integer.toString((int)num1);
+        num2String = Integer.toString((int)num2);
+        numString = Integer.toString(num);
         if(isAnyFlagOn())
         {
-            num2 = Float.parseFloat(String.valueOf(num2) + String.valueOf(num));
+            num2String = num2String + numString;
+            num2 = Float.valueOf(num2String);
         }
         else
         {
-            num1 = Float.parseFloat(Float.toString(num1) + Float.toString(num));
+            num1String = num1String + numString;
+            num1 = Float.valueOf(num1String);
         }
     }
 
@@ -281,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
     public void cosinusOnClick(View v)
     {
         clearCalculation();
-        setResult(0);
+        setResult(0.0f);
 
         setCalculation("cos(");
         cosinusFlag = true;
@@ -290,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
     public void sinusOnClick(View v)
     {
         clearCalculation();
-        setResult(0);
+        setResult(0.0f);
 
         setCalculation("sin(");
         sinusFlag = true;
@@ -299,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
     public void tangentOnClick(View v)
     {
         clearCalculation();
-        setResult(0);
+        setResult(0.0f);
 
         setCalculation("tan(");
         tangentFlag = true;
